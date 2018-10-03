@@ -14,34 +14,34 @@ import com.cyg.models.Roles;
 import com.cyg.models.User;
 
 @SpringBootApplication
-//public class ChooseYourGiftApplication implements CommandLineRunner {
-public class ChooseYourGiftApplication {
+public class ChooseYourGiftApplication implements CommandLineRunner {
+//public class ChooseYourGiftApplication {
 
-//	@Autowired
-//	UserRepo userRepository;
-//	
-//	@Autowired
-//	RolesRepo rolesRepository;
-//	
+	@Autowired
+	UserRepo userRepository;
+	
+	@Autowired
+	RolesRepo rolesRepository;
+	
 	public static void main(String[] args) {
 		SpringApplication.run(ChooseYourGiftApplication.class, args);
 	}
-//	
-//	@Override
-//    public void run(String... arg0) throws Exception {
-//    	showData();
-//    }
-//
-//    @Transactional
-//    private void showData(){
-//    	// get All data
-//    	List<User> user = userRepository.findAll();
-//        List<Roles> roles = rolesRepository.findAll();
-//         
-//        System.out.println("===================User:==================");
-//        user.forEach(System.out::println);
-//         
-//        System.out.println("===================Roles:==================");
-//        roles.forEach(System.out::println);
-//    }
+	
+	@Override
+    public void run(String... arg0) throws Exception {
+    	showData();
+    }
+
+    @Transactional
+    private void showData(){
+    	// get All data
+    	List<User> user = userRepository.findAll();
+        List<Roles> roles = rolesRepository.findAll();
+         
+        System.out.println("===================User:==================");
+        user.forEach(System.out::println);
+         
+        System.out.println("===================Roles:==================");
+        roles.forEach(System.out::println);
+    }
 }

@@ -38,11 +38,11 @@ public class User extends IdEntity {
 	@Column(name = "money", nullable = false)
 	private int money;
 	
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "roles_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "roles_id")
 //	@JsonBackReference
-//
-//	private Roles roles;
+
+	private Roles roles;
 	
 	public User() {
 		
@@ -74,24 +74,16 @@ public class User extends IdEntity {
 		this.money = money;
 	}
 	
-//	public User(String firstname, String lastname, int money, List<Roles> roles) {
-//
-//		this.firstname = firstname;
-//		this.lastname = lastname;
-//		this.money = money;
-//		this.roles = roles;
-//	}
+	public User(String firstname, String lastname, int money, Roles roles) {
+
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.money = money;
+		this.roles = roles;
+	}
 	
-//	public User(String firstname, String lastname, int money, Roles roles) {
-//
-//		this.firstname = firstname;
-//		this.lastname = lastname;
-//		this.money = money;
-//		this.roles = roles;
-//	}
-//	
-//	public String toString(){
-//		String info = String.format("User: %s has a role with name = %s", this.firstname, this.roles.getRoles_rolecode());
-//		return info;
-//	}
+	public String toString(){
+		String info = String.format("User: %s has a role with name = %s", this.firstname, this.roles.getRoles_rolecode());
+		return info;
+	}
 }

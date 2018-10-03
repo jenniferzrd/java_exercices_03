@@ -22,6 +22,7 @@ import javax.persistence.Table;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -37,10 +38,10 @@ public class Roles  {
 	@Column(name = "roles_rolename")
 	private String roles_rolename;
 	
-//	@OneToMany(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY)
 //	@JsonManagedReference
-//	
-//	private List<User> user;
+	@JsonIgnore
+	private List<User> user;
 	
 	public Roles() {
 		
@@ -64,16 +65,16 @@ public class Roles  {
 		this.roles_rolename = roles_rolename;
 	}
 	
-//	public void setUser(List<User> user){
-//		this.user = user;
-//	}
-//	
-//	public List<User> getUser(){
-//		return this.user;
-//	}	
+	public void setUser(List<User> user){
+		this.user = user;
+	}
 	
-//	public String toString(){
-//		String info = String.format("Roles: %s", this.roles_rolename);
-//		return info;
-//	}
+	public List<User> getUser(){
+		return this.user;
+	}	
+	
+	public String toString(){
+		String info = String.format("Roles: %s", this.roles_rolename);
+		return info;
+	}
 }
