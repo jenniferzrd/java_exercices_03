@@ -41,8 +41,11 @@ public class User extends IdEntity {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "roles_id")
 //	@JsonBackReference
-
 	private Roles roles;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id", insertable = false, updatable = false)
+	private ProjectsUsers projectsUsers;
 	
 	public User() {
 		
@@ -82,8 +85,16 @@ public class User extends IdEntity {
 		this.roles = roles;
 	}
 	
+	public User(String firstname, String lastname, int money, ProjectsUsers projectsUsers) {
+
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.money = money;
+		this.projectsUsers = projectsUsers;
+	}
+	
 	public String toString(){
-		String info = String.format("User: %s has a role with name = %s", this.firstname, this.roles.getRoles_rolecode());
+		String info = String.format("User: %s has a role with name = %s, id = %s", this.firstname, this.roles.getRoles_rolecode(), this.projectsUsers.getId_users());
 		return info;
 	}
 }
