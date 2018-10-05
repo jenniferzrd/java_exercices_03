@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.cyg.dao.ProjectsUsersRepo;
 import com.cyg.models.Project;
 import com.cyg.models.ProjectsUsers;
+import com.cyg.models.ProjectsUsersId;
 
 @Service
 public class ProjectsUsersServiceImpl implements ProjectsUsersService {
@@ -23,5 +24,24 @@ public class ProjectsUsersServiceImpl implements ProjectsUsersService {
 	@Override
 	public ProjectsUsers save(ProjectsUsers projectsUsers) {
 	return this.projectsUsersRepository.save(projectsUsers);
+	}
+	
+//	@Override
+//	public void deleteProjectsUsers(int id) {
+//		this.projectsUsersRepository.deleteAll();
+//	}
+	
+//	public void deleteAll(){
+//		projectsUsersRepository.deleteAll();
+//	}
+	
+	public void deleteProjectsUsersId() {
+		this.projectsUsersRepository.deleteAll();
+	}
+
+	@Override
+	public void deleteProjectsUsers(ProjectsUsersId projectsUsersId) {
+		// TODO Auto-generated method stub
+		
 	}
 }

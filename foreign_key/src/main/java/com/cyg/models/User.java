@@ -12,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -40,12 +41,21 @@ public class User extends IdEntity {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "roles_id")
-//	@JsonBackReference
 	private Roles roles;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id", insertable = false, updatable = false)
-	private ProjectsUsers projectsUsers;
+	////// VERSION 1
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "id", insertable = false, updatable = false)
+//	private ProjectsUsers projectsUsers;
+	////// FIN VERSION 1
+	
+//	@ManyToOne(fetch=FetchType.LAZY)
+//    @JoinColumn(name = "id_users")
+//	private ProjectsUsers projectsUsers;
+//	
+	
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<ProjectsUsers> projectsUsers;
 	
 	public User() {
 		
@@ -85,16 +95,25 @@ public class User extends IdEntity {
 		this.roles = roles;
 	}
 	
-	public User(String firstname, String lastname, int money, ProjectsUsers projectsUsers) {
-
-		this.firstname = firstname;
-		this.lastname = lastname;
-		this.money = money;
-		this.projectsUsers = projectsUsers;
-	}
+//	public User(String firstname, String lastname, int money, ProjectsUsers projectsUsers) {
+//
+//		this.firstname = firstname;
+//		this.lastname = lastname;
+//		this.money = money;
+//		this.projectsUsers = projectsUsers;
+//	}
 	
 	public String toString(){
-		String info = String.format("User: %s has a role with name = %s, id = %s", this.firstname, this.roles.getRoles_rolecode(), this.projectsUsers.getId_users());
-		return info;
-	}
+	String info = String.format("User: %s is %s", this.firstname, this.roles.getRoles_rolecode());
+	return info;
+}
+
+public User(String firstname, String lastname, int money, Roles roles, List<ProjectsUsers> projectsUsers) {
+	super();
+	this.firstname = firstname;
+	this.lastname = lastname;
+	this.money = money;
+	this.roles = roles;
+	this.projectsUsers = projectsUsers;
+}
 }

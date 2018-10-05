@@ -20,9 +20,14 @@ public class Project extends IdEntity {
 	@Column(name = "totalmoney")
 	private int totalMoney;
 	
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "id", insertable = false, updatable = false)
+//	@JoinColumn(name="id_plan")
+//	private ProjectsUsers projectsUsers;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id", insertable = false, updatable = false)
-	private ProjectsUsers projectsUsers;
+	private ProjectsIdeas projectsIdeas;
 	
 	public Project() {}
 	
@@ -44,11 +49,11 @@ public class Project extends IdEntity {
 		this.totalMoney = totalMoney;
 	}
 	
-	public Project(String title, int totalMoney, ProjectsUsers projectsUsers) {
-		this.title = title;
-		this.totalMoney = totalMoney;
-		this.projectsUsers = projectsUsers;
-	}
+//	public Project(String title, int totalMoney, ProjectsUsers projectsUsers) {
+//		this.title = title;
+//		this.totalMoney = totalMoney;
+//		this.projectsUsers = projectsUsers;
+//	}
 
 	public String toString(){
 		String info = String.format("Project %s : %s", this.getId(), this.title);

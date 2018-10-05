@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cyg.models.Project;
+import com.cyg.models.ProjectsIdeas;
 import com.cyg.models.ProjectsUsers;
 import com.cyg.models.Roles;
 import com.cyg.service.ProjectsUsersService;
@@ -44,5 +45,12 @@ public class ProjectsUsersController {
 		return this.projectsUsersService.save(projectsUsers);
 	}
 
+	@RequestMapping(value = "/deleteProjectsUsers", method = RequestMethod.POST)
+	public void deleteProjectsUsers(@RequestBody String projectsUsersJson) throws Exception {
+		this.mapper = new ObjectMapper();
+
+		ProjectsUsers projectsUsers = this.mapper.readValue(projectsUsersJson, ProjectsUsers.class);
+		this.projectsUsersService.deleteProjectsUsers(projectsUsers.getProjectsUsersId());
+	}
 	
 }

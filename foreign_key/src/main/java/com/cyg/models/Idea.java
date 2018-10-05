@@ -79,7 +79,6 @@ public class Idea extends IdEntity {
 		this.quantity = quantity;
 	}
 	public Idea(String title, String img, String comment, int price, boolean jaime, int quantity) {
-		super();
 		this.title = title;
 		this.img = img;
 		this.comment = comment;
