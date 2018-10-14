@@ -8,6 +8,4 @@ import com.cyg.models.Roles;
 
 public interface ProjectsUsersRepo extends JpaRepository<ProjectsUsers, ProjectsUsersId>  {
 
-
-
 }

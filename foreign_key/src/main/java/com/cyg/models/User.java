@@ -29,7 +29,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 public class User extends IdEntity {
 
-
 	private static final long serialVersionUID = 1314151617181920L;	
 
 	@Column(name = "firstname", nullable = false, length = 45)
@@ -43,23 +42,10 @@ public class User extends IdEntity {
 	@JoinColumn(name = "roles_id")
 	private Roles roles;
 	
-	////// VERSION 1
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumn(name = "id", insertable = false, updatable = false)
-//	private ProjectsUsers projectsUsers;
-	////// FIN VERSION 1
-	
-//	@ManyToOne(fetch=FetchType.LAZY)
-//    @JoinColumn(name = "id_users")
-//	private ProjectsUsers projectsUsers;
-//	
-	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<ProjectsUsers> projectsUsers;
 	
-	public User() {
-		
-	}
+	public User() {}
 	
 	public String getFirstname() {
 		return firstname;
@@ -94,14 +80,6 @@ public class User extends IdEntity {
 		this.money = money;
 		this.roles = roles;
 	}
-	
-//	public User(String firstname, String lastname, int money, ProjectsUsers projectsUsers) {
-//
-//		this.firstname = firstname;
-//		this.lastname = lastname;
-//		this.money = money;
-//		this.projectsUsers = projectsUsers;
-//	}
 	
 	public String toString(){
 	String info = String.format("User: %s is %s", this.firstname, this.roles.getRoles_rolecode());
