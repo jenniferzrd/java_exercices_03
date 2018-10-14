@@ -27,9 +27,8 @@ public class Project extends IdEntity {
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<ProjectsUsers> projectsUsers;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id", insertable = false, updatable = false)
-	private ProjectsIdeas projectsIdeas;
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<ProjectsIdeas> projectsIdeas;
 	
 	public Project() {}
 	
@@ -51,10 +50,11 @@ public class Project extends IdEntity {
 		this.totalMoney = totalMoney;
 	}
 	
-	public Project(String title, int totalMoney, List<ProjectsUsers> projectsUsers) {
+	public Project(String title, int totalMoney, List<ProjectsUsers> projectsUsers, List<ProjectsIdeas> projectsIdeas) {
 		this.title = title;
 		this.totalMoney = totalMoney;
 		this.projectsUsers = projectsUsers;
+		this.projectsIdeas = projectsIdeas;
 	}
 
 	public String toString(){

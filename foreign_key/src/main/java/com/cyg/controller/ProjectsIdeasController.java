@@ -34,7 +34,7 @@ public class ProjectsIdeasController {
 			this.mapper = new ObjectMapper();
 
 			ProjectsIdeas projectsIdeas = this.mapper.readValue(projectsIdeasJson, ProjectsIdeas.class);
-			this.projectsIdeasService.deleteProjectsIdeas(projectsIdeas.getId());
+			this.projectsIdeasService.deleteProjectsIdeas(projectsIdeas.getProjectsIdeasId());
 		}
 		
 		@RequestMapping(value = "/saveOrUpdateProjectsIdeas", method = RequestMethod.POST)

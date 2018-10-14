@@ -9,6 +9,7 @@ import com.cyg.dao.ProjectRepo;
 import com.cyg.dao.ProjectsIdeasRepo;
 import com.cyg.models.Project;
 import com.cyg.models.ProjectsIdeas;
+import com.cyg.models.ProjectsIdeasId;
 import com.cyg.models.Roles;
 
 @Service
@@ -23,8 +24,8 @@ public class ProjectsIdeasServiceImpl implements ProjectsIdeasService {
 	}
 	
 	@Override
-	public void deleteProjectsIdeas(int id) {
-		this.projectsIdeasRepository.deleteById(id);
+	public void deleteProjectsIdeas(ProjectsIdeasId projectsIdeasId) {
+		this.projectsIdeasRepository.deleteById(projectsIdeasId);
 	}
 	
 	@Override

@@ -12,88 +12,63 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity(name="projects_ideas")
+@Entity
 @Table(name="projects_ideas")
 @Access(AccessType.FIELD)
+
 public class ProjectsIdeas {
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
-	private int id;
+	@EmbeddedId
+	private ProjectsIdeasId projectsIdeasId;
 	
-	@Column(name = "id_ideas")
-	private int id_ideas;
-	
-	@Column(name = "id_projects")
-	private int id_projects;
-	
-	@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	@JsonIgnore
-	List<Idea> idea;
-	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JsonIgnore
-	List<Project> project;
-	
-	public int getId_ideas() {
-		return id_ideas;
+	public ProjectsIdeas() {}
+
+	public ProjectsIdeasId getProjectsIdeasId() {
+		return projectsIdeasId;
 	}
-	public void setId_ideas(int id_ideas) {
-		this.id_ideas = id_ideas;
-	}
-	public int getId_projects() {
-		return id_projects;
-	}
-	public void setId_projects(int id_projects) {
-		this.id_projects = id_projects;
+
+	public void setProjectsIdeasId(ProjectsIdeasId projectsIdeasId) {
+		this.projectsIdeasId = projectsIdeasId;
 	}
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JoinColumn(name = "id_projects", insertable = false, updatable = false)
+	private Project project;
 	
-	public ProjectsIdeas() {
-	}
-	
-	public ProjectsIdeas(int id, int id_ideas, int id_projects) {
-		this.id = id;
-		this.id_ideas = id_ideas;
-		this.id_projects = id_projects;
-	}
-	
-	public List<Idea> getIdea() {
-		return idea;
-	}
-	public void setIdea(List<Idea> idea) {
-		this.idea = idea;
-	}
-	
-	public List<Project> getProject() {
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JoinColumn(name = "id_ideas", insertable = false, updatable = false)
+	private Idea idea;
+
+	public Project getProject() {
 		return project;
 	}
-	public void setProject(List<Project> project) {
+
+	public void setProject(Project project) {
 		this.project = project;
 	}
-	
-	public ProjectsIdeas(int id, int id_ideas, int id_projects, List<Idea> idea, List<Project> project) {
-		super();
-		this.id = id;
-		this.id_ideas = id_ideas;
-		this.id_projects = id_projects;
+
+	public Idea getIdea() {
+		return idea;
+	}
+
+	public void setIdea(Idea idea) {
 		this.idea = idea;
-		this.project = project;
 	}
-	public String toString(){
-		String info = String.format("Id: %s ----- IdeaId: %s ----- ProjectId: %s", this.id, this.id_ideas, this.id_projects);
-		return info;
+
+	public ProjectsIdeas(ProjectsIdeasId projectsIdeasId, Project project, Idea idea) {
+		super();
+		this.projectsIdeasId = projectsIdeasId;
+		this.project = project;
+		this.idea = idea;
 	}
 }

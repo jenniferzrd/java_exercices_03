@@ -1,13 +1,17 @@
 package com.cyg.models;
 
+import java.util.List;
+
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -33,9 +37,8 @@ public class Idea extends IdEntity {
 	@Column(name = "quantity", nullable = false)
 	private int quantity;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id", insertable = false, updatable = false)
-	private ProjectsIdeas projectsIdeas;
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<ProjectsIdeas> projectsIdeas;
 	
 	public String getTitle() {
 		return title;
@@ -87,6 +90,17 @@ public class Idea extends IdEntity {
 		this.quantity = quantity;
 	}
 
+	public Idea(String title, String img, String comment, int price, boolean jaime, int quantity,
+			List<ProjectsIdeas> projectsIdeas) {
+		super();
+		this.title = title;
+		this.img = img;
+		this.comment = comment;
+		this.price = price;
+		this.jaime = jaime;
+		this.quantity = quantity;
+		this.projectsIdeas = projectsIdeas;
+	}
 	public Idea() {	}
 
 }
